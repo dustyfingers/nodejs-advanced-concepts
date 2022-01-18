@@ -1,0 +1,4 @@
+in general,
+
+node event loop --> single threaded
+some of the node framework/std lib --> NOT single threaded

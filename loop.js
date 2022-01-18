@@ -38,7 +38,7 @@ while (shouldConutinue()) {
 
     // 4) look at pendingTimers. call any setImmediate
 
-    // 5) handle any 'close' events
+    // 5) handle any 'close' events (check close-event.js)
 
 }
 

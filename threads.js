@@ -3,8 +3,7 @@ process.env.UV_THREADPOOL_SIZE = 2
 
 const crypto = require('crypto');
 
-const start = Date.now();
-
+let start = Date.now();
 // do expensive work (compute hash)
 crypto.pbkdf2('a', 'b', 100000, 512, 'sha512', () => {
     const end = Date.now();
@@ -13,7 +12,7 @@ crypto.pbkdf2('a', 'b', 100000, 512, 'sha512', () => {
     console.log(`diff 1: ${end - start}`);
 });
 
-
+start = Date.now();
 // note the start times for these two separate calls to pbkdf2() are the EXACT SAME TICK!!! (often)
 crypto.pbkdf2('x', 'z', 100000, 512, 'sha512', () => {
     const end = Date.now();
@@ -26,7 +25,7 @@ crypto.pbkdf2('x', 'z', 100000, 512, 'sha512', () => {
 // so whats the deal?
 // libuv thread pools!
 
-
+start = Date.now();
 crypto.pbkdf2('x', 'z', 100000, 512, 'sha512', () => {
     const end = Date.now();
     console.log(`start 3: ${start}`);
@@ -34,6 +33,7 @@ crypto.pbkdf2('x', 'z', 100000, 512, 'sha512', () => {
     console.log(`diff 3: ${end - start}`);
 });
 
+start = Date.now();
 crypto.pbkdf2('x', 'z', 100000, 512, 'sha512', () => {
     const end = Date.now();
     console.log(`start 4: ${start}`);
@@ -41,6 +41,7 @@ crypto.pbkdf2('x', 'z', 100000, 512, 'sha512', () => {
     console.log(`diff 4: ${end - start}`);
 });
 
+start = Date.now();
 crypto.pbkdf2('x', 'z', 100000, 512, 'sha512', () => {
     const end = Date.now();
     console.log(`start 5: ${start}`);

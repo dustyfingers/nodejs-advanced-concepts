@@ -25,7 +25,8 @@ const fetchGoogle = () => {
 }
 
 // these all happen at essentially the same time!
-// non blocking!
+// they are delegated to the underlying os and thusly 
+// are not 'in' the event loop and are non blocking!
 fetchGoogle()
 fetchGoogle()
 fetchGoogle()
